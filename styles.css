@@ -237,6 +237,10 @@ nav {
   text-align: center;
 }
 
+.btn:active {
+  transform: scale(0.96);
+}
+
 .btn-primary {
   background: var(--accent);
   color: #fff;
@@ -277,6 +281,19 @@ nav {
 
 .theme-toggle:hover {
   background: var(--border-color);
+}
+
+.theme-toggle svg {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-toggle:hover svg {
+  transform: rotate(30deg);
+}
+
+.theme-toggle:active svg {
+  transform: scale(0.8);
+  transition-duration: 0.1s;
 }
 
 /* Mobile Menu */
@@ -463,6 +480,31 @@ section {
 /* PRODUCTS */
 .products {
   background: var(--bg-secondary);
+  position: relative;
+}
+
+.products-showcase {
+  text-align: center;
+  margin: -140px auto 40px; /* Offset it upwards slightly out of the padded section */
+  max-width: 800px;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.4));
+}
+
+.fan-img {
+  width: 100%;
+  height: auto;
+  /* Screen drops out perfect black backgrounds seamlessly on dark mode */
+  mix-blend-mode: screen; 
+  /* Clip-path strips the bottom text logo out dynamically */
+  clip-path: polygon(0 0, 100% 0, 100% 83%, 0 83%);
+  transform: translateY(20px);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.products-showcase:hover .fan-img {
+  transform: translateY(0) scale(1.02);
 }
 
 .products-header {

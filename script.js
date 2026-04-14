@@ -81,6 +81,28 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       entry.target.classList.add('active');
+      
+      // Number counter microanimation
+      if (entry.target.classList.contains('stat-item')) {
+        const valEl = entry.target.querySelector('.stat-val');
+        if (valEl) {
+          const target = parseInt(valEl.getAttribute('data-val') || valEl.innerText);
+          if (!isNaN(target)) {
+            valEl.setAttribute('data-val', target); // Store original
+            let current = 0;
+            const increment = Math.max(1, Math.floor(target / 40));
+            const timer = setInterval(() => {
+              current += increment;
+              if (current >= target) {
+                current = target;
+                clearInterval(timer);
+              }
+              valEl.innerText = current + (valEl.innerText.includes('%') ? '%' : '+');
+            }, 30);
+          }
+        }
+      }
+      
       observer.unobserve(entry.target);
     });
   }, revealOptions);
