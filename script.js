@@ -1,5 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
   /* =========================================
+     0. Preloader Logo Building
+     ========================================= */
+  const preloader = document.getElementById('preloader');
+  if (preloader) {
+    // The CSS animation takes about 1.3s total (0.7s max delay + 0.6s animation duration).
+    // Give it a little padding before fading out the preloader background.
+    setTimeout(() => {
+      preloader.classList.add('hidden');
+    }, 1800);
+  }
+
+  /* =========================================
      1. Theme Toggle (Light / Dark Mode)
      ========================================= */
   const themeToggle = document.getElementById('themeToggle');
